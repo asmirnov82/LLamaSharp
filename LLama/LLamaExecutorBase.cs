@@ -267,7 +267,7 @@ namespace LLama
         /// <param name="inferenceParams"></param>
         /// <param name="args"></param>
         protected abstract Task InferInternal(IInferenceParams inferenceParams, InferStateArgs args);
-
+                
         /// <summary>
         /// Save the current state to a file.
         /// </summary>

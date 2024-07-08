@@ -222,7 +222,7 @@ namespace LLama
         }
 
         /// <inheritdoc />
-        protected override Task InferInternal(IInferenceParams inferenceParams, InferStateArgs args)
+        protected override async Task InferInternal(IInferenceParams inferenceParams, InferStateArgs args)
         {
             var batch = new LLamaBatch();
 
@@ -270,7 +270,7 @@ namespace LLama
                 }
                 else
                 {
-                    result = Context.NativeHandle.Decode(_embeds, LLamaSeqId.Zero, batch, ref _pastTokensCount);
+                    result = await Task.Run(() => Context.NativeHandle.Decode(_embeds, LLamaSeqId.Zero, batch, ref _pastTokensCount));
                     if (result.Item1 != DecodeResult.Ok) throw new LLamaDecodeError(result.Item1);
                 }
                 
@@ -346,7 +346,7 @@ namespace LLama
                 }
             }
 
-            return Task.CompletedTask;
+            return;
         }
 
         /// <summary>

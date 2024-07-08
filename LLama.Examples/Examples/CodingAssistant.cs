@@ -1,4 +1,4 @@
-﻿namespace LLama.Examples.Examples
+namespace LLama.Examples.Examples
 {
     using LLama.Common;
     using System;
@@ -15,7 +15,7 @@
 
         public static async Task Run()
         {
-            string modelPath = UserSettings.GetModelPath();
+            string modelPath = @"C:\ML\Models\Phi-3-mini-4k\GGUF\Phi-3-mini-4k-instruct-q4.gguf"; //UserSettings.GetModelPath();
             if (!modelPath.Contains("codellama", StringComparison.InvariantCultureIgnoreCase))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
