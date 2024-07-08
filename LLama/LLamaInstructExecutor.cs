@@ -194,7 +194,9 @@ namespace LLama
 
                 TryReuseMatchingPrefix();
 
-                var (result, _) = await Task.Run(() => Context.NativeHandle.Decode(_embeds, LLamaSeqId.Zero, batch, ref _pastTokensCount));
+                var (result, _, pastTokensCount) = await Context.DecodeAsync(_embeds, LLamaSeqId.Zero, batch, _pastTokensCount);
+                _pastTokensCount = pastTokensCount;
+
                 if (result != DecodeResult.Ok)
                     throw new LLamaDecodeError(result);
 
